@@ -1,0 +1,111 @@
+"use client";
+
+import { Progress } from "@/components/ui/progress";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useAnimatedNumber } from "@/lib/hooks/useAnimatedNumbers";
+import { useState, useEffect } from "react";
+
+interface CampaignCardProps {
+  image: string;
+  title: string;
+  description: string;
+  link: string;
+  imageWidth?: number;
+  imageHeight?: number;
+}
+
+export default function CampaignCard({
+  image,
+  title,
+  description,
+  link,
+  imageWidth = 16,
+  imageHeight = 9,
+}: CampaignCardProps) {
+  const router = useRouter();
+  const currentValue = 8000; // Current/final value of the progress bar
+  const goalValue = 10000; // Max goal for progress calculation
+  const [isHovered, setIsHovered] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  // Start with current value displayed
+  const startValue = currentValue * 0.5; // 50% of current value
+
+  // Use the hook to animate between values
+  const count = useAnimatedNumber(
+    shouldAnimate ? startValue : currentValue, // Start from 50% when animation begins
+    10
+  );
+
+  // When hover state changes, control animation
+  useEffect(() => {
+    if (isHovered) {
+      // First set the count to the reduced value immediately
+      setShouldAnimate(true);
+
+      // Then after a tiny delay (for state to update), animate back up
+      const timeout = setTimeout(() => {
+        setShouldAnimate(false);
+      }, 50);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isHovered]);
+
+  // Calculate progress percentage (0-100)
+  const progressPercentage = Math.min(
+    100,
+    Math.round((count / goalValue) * 100)
+  );
+
+  // Calculate aspect ratio for image container
+  const aspectRatio = `${imageWidth} / ${imageHeight}`;
+
+  return (
+    <div
+      className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="relative w-full" style={{ aspectRatio }}>
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+      <div className="p-6 flex-grow">
+        <h3 className="text-[#252a34] text-2xl font-semibold mb-2">{title}</h3>
+        <p className="text-[#555555] mb-4 text-base line-clamp-3">
+          {description}
+        </p>
+      </div>
+      <div className="mb-4 px-6">
+        <div className="flex justify-between text-sm mb-2">
+          <span>Raised</span>
+          <span>Goal</span>
+        </div>
+        <Progress
+          value={progressPercentage}
+          className="h-2 mb-2 bg-[#d2daba80]"
+        />
+        <div className="flex justify-between text-sm">
+          <span>+{count.toLocaleString()} Peace Pledges</span>
+          <span>+{goalValue.toLocaleString()} Peace Pledges</span>
+        </div>
+      </div>
+
+      <div className="px-6 pb-6 mt-6">
+        <button
+          className="bg-[#2f4858] text-white py-2 px-6 rounded-full font-medium hover:bg-opacity-90 transition-colors w-fit"
+          onClick={() => router.push(link)}
+        >
+          Pledge Now
+        </button>
+      </div>
+    </div>
+  );
+}
