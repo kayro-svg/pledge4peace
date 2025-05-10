@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAnimatedNumber } from "@/lib/hooks/useAnimatedNumbers";
 import { useState, useEffect } from "react";
+import PledgesProgressBar from "@/components/ui/pledges-progress-bar";
 
 interface CampaignCardProps {
   image: string;
@@ -77,30 +78,16 @@ export default function CampaignCard({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      <div className="p-6 flex-grow">
-        <h3 className="text-[#252a34] text-2xl font-semibold mb-2">{title}</h3>
-        <p className="text-[#555555] mb-4 text-base line-clamp-3">
-          {description}
-        </p>
-      </div>
-      <div className="mb-4 px-6">
-        <div className="flex justify-between text-sm mb-2">
-          <span>Raised</span>
-          <span>Goal</span>
+      <div className="flex flex-col gap-6 p-6">
+        <div className="flex-grow">
+          <h3 className="text-[#252a34] text-2xl font-semibold mb-2">
+            {title}
+          </h3>
+          <p className="text-[#555555] text-base line-clamp-3">{description}</p>
         </div>
-        <Progress
-          value={progressPercentage}
-          className="h-2 mb-2 bg-[#d2daba80]"
-        />
-        <div className="flex justify-between text-sm">
-          <span>+{count.toLocaleString()} Peace Pledges</span>
-          <span>+{goalValue.toLocaleString()} Peace Pledges</span>
-        </div>
-      </div>
-
-      <div className="px-6 pb-6 mt-6">
+        <PledgesProgressBar currentValue={8000} goalValue={10000} />
         <button
-          className="bg-[#2f4858] text-white py-2 px-6 rounded-full font-medium hover:bg-opacity-90 transition-colors w-fit"
+          className="bg-[#2f4858] text-white py-2 px-6 mt-4 rounded-full font-medium hover:bg-opacity-90 transition-colors w-fit"
           onClick={() => router.push(link)}
         >
           Pledge Now

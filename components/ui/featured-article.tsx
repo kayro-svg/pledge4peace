@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
+import { useRef, useEffect } from "react";
 
 interface FeaturedArticleProps {
   image: string;
@@ -15,27 +18,57 @@ export default function FeaturedArticle({
   title,
   description,
 }: FeaturedArticleProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Ensure video is paused on component mount
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
   return (
-    <div className="relative h-[450px] rounded-2xl overflow-hidden shadow-card group">
-      <Image
-        src={image || "/placeholder.svg"}
-        alt={title}
-        fill
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
-      />
+    <div
+      className="relative h-[450px] rounded-2xl overflow-hidden shadow-card group"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <video
+        ref={videoRef}
+        muted
+        loop
+        playsInline
+        className="w-full h-full object-cover"
+      >
+        <source src="/pledge4peace_hero_video.mp4" type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
       <div className="absolute inset-0 flex p-8 text-white justify-end items-end">
         <div className="flex flex-col gap-4 w-full max-w-[50%]">
           <h4 className="text-2xl md:text-3xl font-bold mb-3 opacity-100 group-hover:opacity-0 transition-opacity duration-300">
             {title}
           </h4>
-          <Link
-            href="/article"
-            className="inline-flex items-center text-white font-medium bg-brand-500 border border-white group-hover:bg-[#2F4858] group-hover:border-transparent group-hover:text-white transition-colors py-2 px-4 rounded-full group/btn w-fit"
-          >
-            See more{" "}
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-          </Link>
+          <div className="flex justify-start mt-2 group">
+            <Link
+              href="#"
+              className="bg-white/30 text-white font-normal text-md px-3 py-1 rounded-full flex items-center hover:bg-white/50 transition-colors"
+            >
+              See more{" "}
+              <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
         <div className="flex flex-col gap-4 items-end w-full max-w-[50%] align-bottom">
           <div className="flex items-center text-sm mb-3 text-gray-300 opacity-100 group-hover:opacity-0 transition-opacity duration-300">

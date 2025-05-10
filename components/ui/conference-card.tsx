@@ -16,7 +16,7 @@ export default function ConferenceCard({
   description,
 }: ConferenceCardProps) {
   return (
-    <div className="rounded-2xl overflow-hidden bg-white shadow-card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 group">
+    <div className="rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
       <div className="relative h-56 overflow-hidden">
         <Image
           src={image || "/placeholder.svg"}

@@ -23,11 +23,11 @@ export default function SmallArticle({
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
-      <div className="w-2/3 p-5">
+      <div className="w-2/3 p-5 flex flex-col justify-between">
         <h4 className="text-lg font-bold mb-2 group-hover:text-brand-500 transition-colors">
           {title}
         </h4>
-        <p className="text-sm text-gray-600 mb-3 line-clamp-2">{description}</p>
+        <p className="text-sm text-gray-600 mb-3 line-clamp-3">{description}</p>
         <Link
           href="/article"
           className="inline-flex items-center text-[#2F4858] font-medium text-sm bg-brand-500 border border-[#2F4858] group-hover:bg-[#2F4858] group-hover:border-transparent group-hover:text-white transition-colors py-2 px-4 rounded-full group/btn w-fit"
