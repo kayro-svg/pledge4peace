@@ -21,7 +21,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-16 container mx-auto px-6">
+    <section className="py-16 container mx-auto px-6 ">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {stats.map((stat, index) => (
           <StatCard

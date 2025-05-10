@@ -100,3 +100,11 @@
     @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent;
   }
 }
+
+@layer utilities {
+  .outline-text {
+    -webkit-text-stroke: 1px #00a2b8;
+    color: transparent;
+    text-shadow: 0 1px 1px rgba(0, 162, 184, 0.1);
+  }
+}

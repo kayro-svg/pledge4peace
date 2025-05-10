@@ -25,7 +25,7 @@ export default function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-20 bg-[#E9EDC9]">
+    <section className="py-20 ">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h1 className="text-[#2F4858] text-4xl md:text-5xl font-bold mb-4">

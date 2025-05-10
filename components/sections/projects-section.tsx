@@ -26,7 +26,7 @@ export default function RecentProjects() {
             RECENT CAMPAIGNS
           </h2>
           <h1 className="text-[#2F4858] text-4xl md:text-5xl font-bold mb-4">
-            Take action today
+            <span className="text-[#548281]">Take action</span> today
           </h1>
           <p className="text-[#2F4858] text-lg max-w-3xl mx-auto">
             Here's how you can take action today, by voting and pledging in our

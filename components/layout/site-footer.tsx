@@ -111,28 +111,10 @@ export default function SiteFooter() {
         </div>
 
         <div className="border-t border-gray-800 pt-8 mt-12 text-sm text-gray-500">
-          <p>&copy; 2023 Pledge4Peace.org. All rights reserved.</p>
+          <p>&copy; 2025 Pledge4Peace.org. All rights reserved.</p>
         </div>
       </div>
     </footer>
-  );
-}
-
-interface SocialLinkProps {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
-}
-
-function SocialLink({ href, icon, label }: SocialLinkProps) {
-  return (
-    <Link
-      href={href}
-      className="text-gray-400 hover:text-white transition-colors"
-    >
-      <span className="sr-only">{label}</span>
-      {icon}
-    </Link>
   );
 }
 

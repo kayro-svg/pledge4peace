@@ -40,11 +40,13 @@ export default function SiteHeader() {
           Contact
         </Link>
       </nav>
-      <Button asChild variant="default">
-        <Link href="/donate" className="tracking-widest font-normal">
-          LOGIN
-        </Link>
-      </Button>
+
+      <Link
+        href="/donate"
+        className="tracking-wider inline-flex items-center w-fit justify-center rounded-full border border-[#2f4858] px-5 py-2 text-sm font-bold text-[#2f4858] hover:text-white shadow hover:bg-[#2f4858] transition-colors duration-300 ease-in-out focus:outline-none"
+      >
+        LOGIN
+      </Link>
     </header>
   );
 }

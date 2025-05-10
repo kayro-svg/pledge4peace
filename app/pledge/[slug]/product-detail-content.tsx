@@ -3,16 +3,84 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Progress } from "@/components/ui/progress";
-import PledgeForm from "@/components/pledge/pledge-form";
-import TabsSection from "@/components/pledge/tabs-section";
-import SidebarSection from "@/components/pledge/sidebar-section";
+import PledgeForm from "@/components/pledge/shared/pledge-form";
+import TabsSection from "@/components/pledge/tabs/tabs-section";
+import SidebarSection from "@/components/pledge/sidebar/sidebar-section";
 import { ArrowLeft, ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { useState } from "react";
+import PledgesProgressBar from "@/components/ui/pledges-progress-bar";
 
 interface MediaItem {
   type: "image" | "video";
   src: string;
   alt: string;
+}
+
+interface ProjectData {
+  slug: string;
+  title: string;
+  description: string;
+  media: MediaItem[];
+  colors: { name: string; hex: string }[];
+  raisedPledges: number;
+  goalPledges: number;
+  commitmentText: string;
+}
+
+interface MainContentSectionProps {
+  projectData: ProjectData;
+}
+
+function MainContentSection({ projectData }: MainContentSectionProps) {
+  return (
+    <div className="w-full">
+      <div className="bg-white rounded-3xl shadow-[0_0_10px_rgba(0,0,0,0.1)] overflow-hidden">
+        <div className="p-8 flex flex-row gap-8">
+          <MediaGallery
+            media={projectData.media}
+            overlayTitle={projectData.title}
+            overlaySubtitle={projectData.description}
+          />
+
+          <div className="w-4/6 flex flex-col gap-4 justify-between">
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-gray-500">pledge4peace.org</div>
+              <h1 className="text-3xl md:text-4xl font-bold">
+                {projectData.title}
+              </h1>
+            </div>
+
+            <div>
+              <p className="text-gray-700">{projectData.description}</p>
+            </div>
+            <PledgesProgressBar
+              currentValue={projectData.raisedPledges}
+              goalValue={projectData.goalPledges}
+            />
+            <PledgeForm commitmentText="I commit my vote, knowing that the most supported solutions and parties will lead meaningful change." />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface ContentTabsProps {
+  mainContentWidth: string;
+  sidebarWidth: string;
+}
+
+function ContentTabs({ mainContentWidth, sidebarWidth }: ContentTabsProps) {
+  return (
+    <div className="flex flex-row gap-8 h-[calc(100vh+20rem)]">
+      <div className="flex flex-col h-full" style={{ width: mainContentWidth }}>
+        <TabsSection />
+      </div>
+      <div className="flex flex-col h-full" style={{ width: sidebarWidth }}>
+        <SidebarSection />
+      </div>
+    </div>
+  );
 }
 
 interface ProductDetailContentProps {
@@ -59,13 +127,11 @@ export function ProductDetailContent({ slug }: ProductDetailContentProps) {
       { name: "Soft Grey", hex: "#AEADAD" },
       { name: "Ivory White", hex: "#F5F5F0" },
     ],
-    raisedPledges: 71,
+    raisedPledges: 200,
     goalPledges: 1000,
     commitmentText:
       "I commit my vote for peace and will support political parties & political solutions based on dialogue.",
   };
-
-  const [selectedColor, setSelectedColor] = useState(projectData.colors[0]);
 
   return (
     <main className="min-h-screen bg-[#fffef5]">
@@ -82,48 +148,8 @@ export function ProductDetailContent({ slug }: ProductDetailContentProps) {
           </div>
 
           <div className="flex flex-col gap-8">
-            {/* Main content - 2/3 width on desktop */}
-            <div className="w-full">
-              <div className="bg-white rounded-3xl shadow-sm overflow-hidden">
-                <div className="p-8 flex flex-row gap-8">
-                  <MediaGallery
-                    media={projectData.media}
-                    overlayTitle={projectData.title}
-                    overlaySubtitle={projectData.description}
-                  />
-
-                  <div className="w-4/6">
-                    <div className="text-sm text-gray-500 mb-2">
-                      pledge4peace.org
-                    </div>
-                    <h1 className="text-3xl md:text-4xl font-bold mb-6">
-                      {projectData.title}
-                    </h1>
-
-                    <div className="mb-8">
-                      <p className="text-gray-700">{projectData.description}</p>
-                    </div>
-                    <div className="mb-8">
-                      <div className="flex justify-between mb-2">
-                        <span className="font-medium">Raised</span>
-                        <span className="font-medium">Goal</span>
-                      </div>
-                      <Progress value={70} className="h-2 mb-2 bg-gray-200" />
-                      <div className="flex justify-between mb-6">
-                        <span className="font-medium">+71 pledges</span>
-                        <span className="font-medium">+1000 pledges</span>
-                      </div>
-                    </div>
-                    <PledgeForm commitmentText="I commit my vote, knowing that the most supported solutions and parties will lead meaningful change." />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Sidebar - 1/3 width on desktop */}
-            <div className="flex flex-row gap-8 items-start justify-start">
-              <TabsSection />
-              <SidebarSection />
-            </div>
+            <MainContentSection projectData={projectData} />
+            <ContentTabs mainContentWidth="70%" sidebarWidth="30%" />
           </div>
         </div>
       </div>
@@ -166,20 +192,20 @@ function MediaGallery({
             className="w-full h-full object-cover"
             controls
             autoPlay
-            muted
+            muted={false}
             loop
           />
         )}
       </div>
 
       {/* Thumbnails */}
-      <div className="flex gap-3 overflow-x-auto pb-2">
+      <div className="flex gap-auto overflow-x-auto p-1 items-center justify-between">
         {media.map((item, index) => (
           <button
             key={index}
             onClick={() => selectMedia(index)}
             className={`relative flex-shrink-0 rounded-lg overflow-hidden w-32 h-24 transition-all ${
-              index === currentIndex ? "ring-2 ring-green-500" : "opacity-80"
+              index === currentIndex ? "ring-2 ring-[#548281]" : "opacity-80"
             }`}
           >
             {item.type === "image" ? (

@@ -16,12 +16,14 @@ export default function ArticlesSection() {
     {
       image: "/placeholder.svg?height=150&width=150",
       title: "Faith & Politics: Virtual Conference",
-      description: "The role of faith in shaping political discourse",
+      description:
+        "The role of faith in shaping political discourse in the United States and the world at large. This conference will explore historical contexts, current challenges, and future possibilities for integrating faith-based perspectives into political frameworks.",
     },
     {
       image: "/placeholder.svg?height=150&width=150",
       title: "Redefining Peace: The North Equation",
-      description: "A new framework for sustainable peace",
+      description:
+        "A new framework for sustainable peace in the world. This conference will explore historical contexts, current challenges, and future possibilities for integrating faith-based perspectives into political frameworks.",
     },
   ];
 

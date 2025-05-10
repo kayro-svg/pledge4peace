@@ -1,59 +1,138 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  ChartNoAxesCombined,
+  HeartHandshake,
+  Landmark,
+} from "lucide-react";
+import HeroVideo from "../ui/hero-video";
+import { useAnimatedNumber } from "@/lib/hooks/useAnimatedNumbers";
 
 export default function HeroSection() {
+  const stats = [
+    {
+      icon: <HeartHandshake className="text-[#2F4858]" />,
+      value: "5000",
+      label: "Peace activists",
+      type: "peaceActivists",
+    },
+    {
+      icon: <ChartNoAxesCombined className="text-[#2F4858]" />,
+      value: "100,000",
+      label: "Pledges Made",
+      type: "pledgesMade",
+    },
+    {
+      icon: <Landmark className="text-[#2F4858]" />,
+      value: "100",
+      label: "Political Parties",
+      type: "committedPoliticalParties",
+    },
+  ];
+
+  const counts = stats.map((stat) =>
+    useAnimatedNumber(parseInt(stat.value.replace(/,/g, "")))
+  );
+  // Format the number with commas
+  const formattedCount = counts.map((count) => count.toLocaleString());
   return (
-    <section className="relative w-full h-[600px] overflow-hidden">
-      {/* Video de fondo */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover object-center"
-      >
-        <source src="/pledge4peace_hero_video.mp4" type="video/mp4" />
-      </video>
-
-      {/* Gradiente oscuro sobre el video */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-black/100 via-black/25 to-transparent z-10"></div>
-
-      {/* Contenido de texto alineado en la parte inferior */}
-      <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-end pb-16">
-        <div className="max-w-2xl animate-slideUp">
-          <div className="inline-block px-4 py-1 mb-6 bg-brand-500/20 backdrop-blur-sm rounded-full text-sm font-medium border border-brand-500/30 text-white">
+    <section className="flex flex-row w-full h-fit overflow-hidden items-start px-8 pr-0 py-16 gap-4">
+      <div className="flex flex-col gap-8 w-[45%]">
+        <div className="mx-auto h-full flex flex-col">
+          <div className="inline-block w-fit px-4 mb-6 bg-[#86AC9D] backdrop-blur-sm text-[#2F4858] bg-opacity-25 rounded-full text-sm font-medium ">
             Building Peace Together
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-4 text-white">
-            To Solve The World's Problems, One Pledge At A Time.
+          <h1 className="text-3xl md:text-3xl lg:text-5xl font-bold mb-4 text-[#2F4858]">
+            To Solve The World's Problems,{" "}
+            <span className="text-[#548281]">One Pledge At A Time.</span>
           </h1>
-          <p className="text-xl md:text-2xl mt-4 mb-8 text-gray-200 max-w-xl">
-            In The Heart Of Hope, Where Dreams Take Flight, Pledge4Peace Stands,
-            A Beacon Bright
+          <p className="text-1xl md:text-xl mt-4 mb-8 text-[#2F4858] max-w-xl">
+            In the earth of hope, where dreams take flight,{" "}
+            <span className="text-[#548281]">Pledge4Peace</span> stands, a
+            beacon bright.
+            <br /> Where hearts unite and visions align, to solve the worlds
+            problems one Pledge at a time.
           </p>
-          <div className="flex flex-wrap gap-4 mt-8">
-            <Button
-              asChild
-              size="lg"
-              variant="default"
-              className="bg-brand-500 hover:bg-brand-600 text-white group rounded-full text-md"
+
+          <div className="flex flex-row gap-4">
+            <Link
+              href="/about"
+              className="group inline-flex items-center w-fit justify-center rounded-full border border-[#2f4858] px-6 py-3 text-sm font-medium text-[#2f4858] hover:text-white shadow hover:bg-[#2f4858] transition-colors duration-300 ease-in-out focus:outline-none"
             >
-              <Link href="/pledge" className="flex items-center">
-                Pledge Now
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-full text-md text-white border-white hover:bg-white/10"
+              Pledge Now
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+            </Link>
+
+            <Link
+              href="/about"
+              className="inline-flex items-center w-fit justify-center rounded-full border border-[#2f4858] px-6 py-3 text-sm font-medium text-[#2f4858] hover:text-white shadow hover:bg-[#2f4858] transition-colors duration-300 ease-in-out focus:outline-none"
             >
-              <Link href="/about">Learn About Us</Link>
-            </Button>
+              Learn About Us
+            </Link>
           </div>
         </div>
+
+        <div className="grid grid-cols-3 gap-10">
+          {/* <div className="bg-[#E9EDC980] border border-[#86AC9D] py-4 px-6 rounded-[30px] w-[250px] h-fit"> */}
+          <div className="w-fit">
+            <div className="rounded-full">
+              {stats.find((stat) => stat.type === "peaceActivists")?.icon}
+            </div>
+            <div className="flex items-center justify-between mb-1 gap-2">
+              <span className="text-3xl font-bold text-[#2F4858]">
+                {formattedCount[0]}
+              </span>
+            </div>
+            <p className="text-sm font-medium text-[#2F4858]">
+              {stats.find((stat) => stat.type === "peaceActivists")?.label}
+            </p>
+          </div>
+
+          {/* Tarjeta de 20 programas */}
+
+          {/* <div className="bg-[#E9EDC980] border border-[#86AC9D] py-4 px-6 rounded-[30px] w-[250px] h-fit"> */}
+          <div className="w-fit">
+            <div className="rounded-full">
+              {stats.find((stat) => stat.type === "pledgesMade")?.icon}
+            </div>
+            <div className="flex items-center justify-between mb-1 gap-2">
+              <span className="text-3xl font-bold text-[#2F4858]">
+                {formattedCount[1]}
+              </span>
+            </div>
+            <p className="text-sm font-medium text-[#2F4858]">
+              {stats.find((stat) => stat.type === "pledgesMade")?.label}
+            </p>
+          </div>
+
+          {/* <div className="bg-[#E9EDC980] border border-[#86AC9D] py-4 px-6 rounded-[30px] w-[250px] h-fit"> */}
+          <div className="w-fit">
+            <div className="rounded-full">
+              {
+                stats.find((stat) => stat.type === "committedPoliticalParties")
+                  ?.icon
+              }
+            </div>
+            <div className="flex items-center justify-start mb-1">
+              <span className="text-3xl font-bold text-[#2F4858]">
+                {formattedCount[2]}
+              </span>
+            </div>
+            <p className="text-sm font-medium text-[#2F4858]">
+              {
+                stats.find((stat) => stat.type === "committedPoliticalParties")
+                  ?.label
+              }
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mr-[-50px] w-[55%] right-0">
+        <HeroVideo />
       </div>
     </section>
   );
