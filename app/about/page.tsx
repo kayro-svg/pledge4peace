@@ -104,7 +104,7 @@ export default async function AboutPage() {
           <div className="mt-8 text-center">
             <a
               href="#"
-              className="bg-blue-600 text-white py-3 px-8 rounded-md font-medium hover:bg-blue-700 transition-colors inline-block"
+              className="bg-[#2f4858] text-white py-3 px-8 rounded-full font-medium hover:bg-[#2f4858] transition-colors inline-block"
             >
               Make a Pledge for Peace
             </a>

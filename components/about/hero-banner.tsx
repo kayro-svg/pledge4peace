@@ -9,8 +9,8 @@ export default function HeroBanner({ title, content }: HeroBannerProps) {
   return (
     <div className="relative w-full">
       {/* Banner background */}
-      <div className="bg-green-100 py-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green-800">
+      <div className="bg-[#D6E0B6] py-12 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#2f4858]">
           {title}
         </h1>
       </div>

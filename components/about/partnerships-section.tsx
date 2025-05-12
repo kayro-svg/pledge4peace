@@ -6,8 +6,8 @@ export default function PartnershipsSection({
   partnershipText,
 }: PartnershipsSectionProps) {
   return (
-    <div className="my-16 bg-green-50 p-8 rounded-lg">
-      <h2 className="text-3xl font-bold mb-6 text-green-800">Partnerships</h2>
+    <div className="my-16 bg-[#D6E0B6] p-8 rounded-lg">
+      <h2 className="text-3xl font-bold mb-6 text-[#2f4858]">Partnerships</h2>
       <p className="text-lg text-gray-700">{partnershipText}</p>
 
       <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
@@ -18,7 +18,7 @@ export default function PartnershipsSection({
         </p>
         <a
           href="#"
-          className="inline-block bg-green-600 text-white py-2 px-6 rounded-md font-medium hover:bg-green-700 transition-colors"
+          className="inline-block bg-[#2f4858] text-white py-2 px-6 rounded-full font-medium hover:bg-[#2f4858] transition-colors"
         >
           Partner With Us
         </a>
