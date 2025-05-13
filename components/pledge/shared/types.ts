@@ -25,7 +25,7 @@ export interface Solution {
   };
 }
 
-export interface Party {
+export interface PartySolutions {
   id: string;
   name: string;
   partyNumber: number;

@@ -26,7 +26,7 @@ export const SupportCard = ({
       <div className="flex-grow"></div>
       <Link
         href={linkHref}
-        className="inline-flex items-center w-full justify-center rounded-full border border-[#2f4858] px-6 py-3 text-sm font-medium text-[#2f4858] group-hover:text-white shadow group-hover:bg-[#2f4858] transition-colors duration-300 ease-in-out focus:outline-none"
+        className="inline-flex items-center w-full justify-center rounded-full border border-[#548281] px-6 py-3 text-sm font-medium text-[#548281] group-hover:text-white shadow group-hover:bg-[#2f4858] transition-colors duration-300 ease-in-out focus:outline-none"
       >
         {linkText}
       </Link>

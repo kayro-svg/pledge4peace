@@ -63,7 +63,7 @@ export default function FeaturedArticle({
           <div className="flex justify-start mt-2 group">
             <Link
               href="#"
-              className="bg-white/30 text-white font-normal text-md px-3 py-1 rounded-full flex items-center hover:bg-white/50 transition-colors"
+              className="bg-[#548281]/30 text-white font-normal text-md px-3 py-1 rounded-full flex items-center hover:bg-white/50 transition-colors"
             >
               See more{" "}
               <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />

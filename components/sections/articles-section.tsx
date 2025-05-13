@@ -32,15 +32,17 @@ export default function ArticlesSection() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center mb-16">
           <div>
-            <h3 className="section-title mb-4">Articles & Updates</h3>
-            <p className="text-gray-600 max-w-2xl">
+            <h3 className="section-title mb-4 text-[#2F4858]">
+              Articles & Updates
+            </h3>
+            <p className="text-[#2F4858] max-w-2xl">
               Find insightful content on global peace efforts, updates on our
               initiatives, and expert perspectives.
             </p>
           </div>
           <Link
             href="/articles"
-            className="mt-6 md:mt-0 text-brand-500 font-medium flex items-center border border-[#2F4858] hover:bg-[#2F4858] hover:text-white transition-colors py-2 px-4 rounded-full group/btn w-fit"
+            className="mt-6 md:mt-0 text-brand-500 font-medium flex items-center border border-[#548281] text-[#548281] hover:bg-[#2F4858] hover:text-white transition-colors py-2 px-4 rounded-full group/btn w-fit"
           >
             View all updates{" "}
             <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/btn:translate-x-1" />

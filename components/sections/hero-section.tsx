@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -12,6 +13,7 @@ import HeroVideo from "../ui/hero-video";
 import { useAnimatedNumber } from "@/lib/hooks/useAnimatedNumbers";
 
 export default function HeroSection() {
+  const router = useRouter();
   const stats = [
     {
       icon: <HeartHandshake className="text-[#2F4858]" />,
@@ -58,20 +60,21 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-row gap-4">
-            <Link
-              href="/about"
-              className="group inline-flex items-center w-fit justify-center rounded-full border border-[#2f4858] px-6 py-3 text-sm font-medium text-[#2f4858] hover:text-white shadow hover:bg-[#2f4858] transition-colors duration-300 ease-in-out focus:outline-none"
+            <Button
+              className="bg-[#548281] text-white group"
+              onClick={() => router.push("/login")}
             >
               Pledge Now
               <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </Button>
 
-            <Link
-              href="/about"
-              className="inline-flex items-center w-fit justify-center rounded-full border border-[#2f4858] px-6 py-3 text-sm font-medium text-[#2f4858] hover:text-white shadow hover:bg-[#2f4858] transition-colors duration-300 ease-in-out focus:outline-none"
+            <Button
+              variant="outline"
+              className="border-[#548281] hover:bg-[#2F4858] hover:text-white text-[#548281]"
+              onClick={() => router.push("/about")}
             >
               Learn About Us
-            </Link>
+            </Button>
           </div>
         </div>
 

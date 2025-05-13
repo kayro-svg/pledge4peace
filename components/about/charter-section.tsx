@@ -6,14 +6,16 @@ interface CharterSectionProps {
 
 export default function CharterSection({ charterPoints }: CharterSectionProps) {
   return (
-    <div className="my-12 bg-white p-8 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6">Our Commitments</h2>
+    <div className="my-12 bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+      <h2 className="text-2xl font-bold mb-6 text-[#2F4858]">Our Charter</h2>
 
-      <ul className="space-y-4">
+      <ul className="space-y-6">
         {charterPoints.map((point, index) => (
-          <li key={index} className="flex">
-            <CheckCircle className="h-6 w-6 text-green-600 mr-3 flex-shrink-0 mt-1" />
-            <p className="text-gray-700">{point}</p>
+          <li key={index} className="flex items-start">
+            <div className="bg-[#D6E0B6]/30 p-2 rounded-full mr-4 flex-shrink-0">
+              <CheckCircle className="h-5 w-5 text-[#548281]" />
+            </div>
+            <p className="text-gray-700 text-lg">{point}</p>
           </li>
         ))}
       </ul>

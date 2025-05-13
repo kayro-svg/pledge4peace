@@ -18,15 +18,17 @@ export default function ConferencesSection() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center mb-16">
           <div>
-            <h3 className="section-title mb-4">Conferences and Events</h3>
-            <p className="text-gray-600 max-w-2xl">
+            <h3 className="section-title mb-4  text-[#2F4858]">
+              Conferences and Events
+            </h3>
+            <p className="text-[#2F4858] max-w-2xl">
               Join our upcoming conferences and events to connect with peace
               advocates from around the world.
             </p>
           </div>
           <Link
             href="/events"
-            className="mt-6 md:mt-0 text-brand-500 font-medium flex items-center border border-[#2F4858] hover:bg-[#2F4858] hover:text-white transition-colors py-2 px-4 rounded-full group/btn w-fit"
+            className="mt-6 md:mt-0 text-brand-500 font-medium flex items-center border border-[#548281] text-[#548281] hover:bg-[#2F4858] hover:text-white transition-colors py-2 px-4 rounded-full group/btn w-fit"
           >
             See all events{" "}
             <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />

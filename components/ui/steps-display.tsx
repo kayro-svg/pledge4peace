@@ -17,7 +17,7 @@ export default function StepsDisplay({ steps }: StepsDisplayProps) {
       {steps.map((step, idx) => (
         <div
           key={idx}
-          className="flex-1 flex flex-col items-center relative w-full md:w-auto hover:drop-shadow-md hover:scale-105 z-50 p-4 rounded-2xl border border-[transparent] transition-all duration-300"
+          className="flex-1 flex flex-col items-center relative w-full md:w-auto hover:drop-shadow-md hover:scale-105 z-1 p-4 rounded-2xl border border-[transparent] transition-all duration-300"
         >
           <div className="z-10 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 p-2 rounded-full border-4 bg-white border-[#548281] text-[#86AC9D]">
             {step.icon}

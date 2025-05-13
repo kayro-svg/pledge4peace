@@ -1,22 +1,10 @@
 import CampaignCard from "@/components/ui/CampaingCard";
+import { getCampaigns } from "@/lib/api";
 
-export default function RecentProjects() {
-  const campaigns = [
-    {
-      image: "/placeholder.svg?height=400&width=600",
-      title: "Strengthen Democracy In Pakistan",
-      description:
-        "Let's Strengthen The Democracy In Pakistan Through Travel And Tourism.",
-      link: "/pledge/strengthen-democracy-in-pakistan",
-    },
-    {
-      image: "/placeholder.svg?height=400&width=600",
-      title:
-        "Create Permanent Peace & Strengthen Democracies In Israel & Palestine",
-      description: "Stand For Peace And Democracy",
-      link: "/pledge/create-permanent-peace-strengthen-democracies-in-israel-and-palestine",
-    },
-  ];
+export default async function RecentProjects() {
+  // Get campaigns from the API
+  const campaigns = await getCampaigns();
+  console.log(campaigns);
 
   return (
     <div className="bg-[#fdfdf0] py-16 px-4">

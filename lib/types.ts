@@ -81,3 +81,73 @@ export interface TeamAboutPage extends AboutPageBase {
 }
 
 export type AboutPage = MainAboutPage | TeamAboutPage | AboutPageBase;
+
+// Campaign/Pledge types
+export interface Campaign {
+  slug: string;
+  image: string;
+  title: string;
+  description: string;
+  link: string;
+  raisedPledges: number;
+  goalPledges: number;
+  commitmentText: string;
+  media?: MediaItem[];
+}
+
+export interface MediaItem {
+  type: "image" | "video";
+  src: string;
+  alt: string;
+}
+
+// Solution types for campaign details
+export interface SolutionGuideline {
+  title: string;
+  description: string;
+}
+
+export interface SolutionDetails {
+  intro: string;
+  guidelines: SolutionGuideline[];
+}
+
+export interface Solution {
+  id: string;
+  title: string;
+  description: string;
+  rank: string;
+  expanded?: boolean;
+  details?: SolutionDetails;
+}
+
+export interface PartySolutions {
+  id: string;
+  name: string;
+  partyNumber: number;
+  logo: string;
+  solutions: Solution[];
+}
+
+// Extended Campaign type with solutions
+export interface CampaignWithSolutions extends Campaign {
+  partySolutions?: PartySolutions[];
+  contentText?: {
+    paragraphs: string[];
+    title?: string;
+  };
+  conference?: {
+    title: string;
+    date: string;
+    time: string;
+    description: string;
+    about: string;
+    images: {
+      banner: string;
+      gallery: {
+        src: string;
+        alt: string;
+      }[];
+    };
+  };
+}
