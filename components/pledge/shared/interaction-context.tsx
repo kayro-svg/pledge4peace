@@ -7,6 +7,7 @@ interface UserInteractions {
   likes: Record<string, boolean>;
   dislikes: Record<string, boolean>;
   shares: Record<string, boolean>;
+  comments: Record<string, boolean>;
 }
 
 // Tipo para los datos de conteo de interacciones de cada solución
@@ -14,6 +15,7 @@ interface InteractionCounts {
   likes: Record<string, number>;
   dislikes: Record<string, number>;
   shares: Record<string, number>;
+  comments: Record<string, number>;
 }
 
 interface InteractionContextType {
@@ -53,6 +55,12 @@ const mockCounts: InteractionCounts = {
     "economy-charter": 193,
     "national-security-charter": 112,
   },
+  comments: {
+    "strengthen-democracy": 10,
+    "land-reforms": 5,
+    "economy-charter": 8,
+    "national-security-charter": 3,
+  },
 };
 
 // Crear el contexto
@@ -67,6 +75,7 @@ export function InteractionProvider({ children }: { children: ReactNode }) {
     likes: {},
     dislikes: {},
     shares: {},
+    comments: {},
   });
 
   // Estado para los contadores globales (inicializado con datos simulados)
@@ -75,6 +84,7 @@ export function InteractionProvider({ children }: { children: ReactNode }) {
       likes: { ...mockCounts.likes },
       dislikes: { ...mockCounts.dislikes },
       shares: { ...mockCounts.shares },
+      comments: { ...mockCounts.comments },
     }
   );
 
@@ -88,7 +98,12 @@ export function InteractionProvider({ children }: { children: ReactNode }) {
       // Actualizar el estado de interacción del usuario primero
       setUserInteractions((prev) => {
         const newInteractions = { ...prev };
-        if (type === "like" || type === "dislike" || type === "share") {
+        if (
+          type === "like" ||
+          type === "dislike" ||
+          type === "share" ||
+          type === "comment"
+        ) {
           const typeKey = type as keyof UserInteractions;
           const hasInteracted =
             newInteractions[typeKey] && newInteractions[typeKey][solutionId];
@@ -174,7 +189,12 @@ export function InteractionProvider({ children }: { children: ReactNode }) {
   const hasInteracted = (type: string, solutionId: string): boolean => {
     if (!solutionId) return false;
 
-    if (type === "like" || type === "dislike" || type === "share") {
+    if (
+      type === "like" ||
+      type === "dislike" ||
+      type === "share" ||
+      type === "comment"
+    ) {
       const typeKey = type as keyof UserInteractions;
       const interactionsForType = userInteractions[typeKey] || {};
       return Boolean(interactionsForType[solutionId]);
@@ -186,7 +206,12 @@ export function InteractionProvider({ children }: { children: ReactNode }) {
   const getInteractionCount = (type: string, solutionId: string): number => {
     if (!solutionId) return 0;
 
-    if (type === "like" || type === "dislike" || type === "share") {
+    if (
+      type === "like" ||
+      type === "dislike" ||
+      type === "share" ||
+      type === "comment"
+    ) {
       const typeKey = type as keyof InteractionCounts;
       const countsForType = interactionCounts[typeKey] || {};
       return countsForType[solutionId] || 0;

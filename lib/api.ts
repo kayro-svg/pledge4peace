@@ -5,10 +5,8 @@ import {
   Campaign,
   CampaignWithSolutions,
   MainAboutPage,
-  MediaItem,
   PartySolutions,
   Solution,
-  TeamAboutPage,
   TeamMember,
 } from "./types";
 
@@ -83,7 +81,7 @@ const MOCK_DATA = {
         title: "Strengthen Democracy In Pakistan",
         description:
           "Let's Strengthen The Democracy In Pakistan Through Travel And Tourism.",
-        link: "/pledge/strengthen-democracy-in-pakistan",
+        link: "/campaigns/strengthen-democracy-in-pakistan",
         raisedPledges: 8000,
         goalPledges: 10000,
         commitmentText:
@@ -295,7 +293,7 @@ const MOCK_DATA = {
         title:
           "Create Permanent Peace & Strengthen Democracies In Israel & Palestine",
         description: "Stand For Peace And Democracy",
-        link: "/pledge/create-permanent-peace-strengthen-democracies-in-israel-and-palestine",
+        link: "/campaigns/create-permanent-peace-strengthen-democracies-in-israel-and-palestine",
         raisedPledges: 6500,
         goalPledges: 10000,
         commitmentText:
@@ -527,4 +525,28 @@ export async function getCampaignSolutions(
 
   // Return solutions or empty array if not found
   return campaign?.partySolutions || [];
+}
+
+export async function getCampaignSolutionById(
+  id: string
+): Promise<Solution | null> {
+  // Simulate network delay
+  await new Promise((resolve) => setTimeout(resolve, 100));
+
+  // Find campaign containing the solution
+  const campaign = MOCK_DATA.campaigns.all.find((c) =>
+    c.partySolutions?.some((p) => p.solutions.some((s) => s.id === id))
+  );
+
+  // Find and return the specific solution
+  if (campaign && campaign.partySolutions) {
+    for (const party of campaign.partySolutions) {
+      const solution = party.solutions.find((s) => s.id === id);
+      if (solution) {
+        return solution;
+      }
+    }
+  }
+
+  return null;
 }

@@ -5,14 +5,16 @@ import { useInteractions } from "./interaction-context";
 
 interface InteractionCounterProps {
   icon: LucideIcon;
-  type: "like" | "dislike" | "share";
+  type: "like" | "dislike" | "share" | "comment";
   solutionId: string;
+  onClick?: () => void;
 }
 
 export default function InteractionCounter({
   icon: Icon,
   type,
   solutionId,
+  onClick,
 }: InteractionCounterProps) {
   const { getInteractionCount, handleInteraction, hasInteracted } =
     useInteractions();
@@ -22,6 +24,11 @@ export default function InteractionCounter({
   const isActive = hasInteracted(type, solutionId);
 
   const handleClick = async () => {
+    if (onClick) {
+      onClick();
+      return;
+    }
+
     // Calculamos el nuevo conteo
     const newCount = isActive ? count - 1 : count + 1;
     // Llamamos al manejador del contexto
@@ -43,6 +50,8 @@ export default function InteractionCounter({
       ? "bg-green-50"
       : type === "dislike"
       ? "bg-red-50"
+      : type === "comment"
+      ? "bg-purple-50"
       : "bg-blue-50"
     : "bg-gray-50";
 
@@ -58,6 +67,8 @@ export default function InteractionCounter({
               ? "text-green-500"
               : type === "dislike"
               ? "text-red-500"
+              : type === "comment"
+              ? "text-purple-500"
               : "text-blue-500"
             : "text-gray-400"
         } hover:text-gray-700`}
@@ -71,6 +82,8 @@ export default function InteractionCounter({
               ? "text-green-500"
               : type === "dislike"
               ? "text-red-500"
+              : type === "comment"
+              ? "text-purple-500"
               : "text-blue-500"
             : "text-gray-500"
         }`}

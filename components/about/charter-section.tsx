@@ -7,8 +7,6 @@ interface CharterSectionProps {
 export default function CharterSection({ charterPoints }: CharterSectionProps) {
   return (
     <div className="my-12 bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
-      <h2 className="text-2xl font-bold mb-6 text-[#2F4858]">Our Charter</h2>
-
       <ul className="space-y-6">
         {charterPoints.map((point, index) => (
           <li key={index} className="flex items-start">

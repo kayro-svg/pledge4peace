@@ -48,13 +48,6 @@ export default function HeroVolunteerBanner() {
                 Apply Now{" "}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button
-                variant="outline"
-                className="border-[#86AC9D] hover:bg-[#2F4858] hover:text-white text-[#86AC9D]"
-                onClick={handleBecomePartnerClick}
-              >
-                Become a Partner
-              </Button>
             </div>
           </div>
           <div className="md:w-1/2 relative h-[300px] md:h-[400px] w-full shadow-[0_0_10px_0_rgba(0,0,0,0.2)] rounded-2xl overflow-hidden">

@@ -45,7 +45,7 @@ export default function PartnershipsSection({
 
         <div className="mt-8 flex justify-start relative z-10">
           <Button
-            className="bg-white text-[#548281] hover:bg-white/90 px-6 py-3 text-lg"
+            className="bg-white text-[#548281] hover:bg-white/90 px-6 py-3 text-lg rounded-full"
             size="lg"
           >
             Partner With Us

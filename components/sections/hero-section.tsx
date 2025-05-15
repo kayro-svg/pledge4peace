@@ -8,19 +8,15 @@ import {
   ChartNoAxesCombined,
   HeartHandshake,
   Landmark,
+  HandHeart,
 } from "lucide-react";
 import HeroVideo from "../ui/hero-video";
 import { useAnimatedNumber } from "@/lib/hooks/useAnimatedNumbers";
+import { StatCard } from "@/components/ui/stat-card";
 
 export default function HeroSection() {
   const router = useRouter();
   const stats = [
-    {
-      icon: <HeartHandshake className="text-[#2F4858]" />,
-      value: "5000",
-      label: "Peace activists",
-      type: "peaceActivists",
-    },
     {
       icon: <ChartNoAxesCombined className="text-[#2F4858]" />,
       value: "100,000",
@@ -28,10 +24,16 @@ export default function HeroSection() {
       type: "pledgesMade",
     },
     {
-      icon: <Landmark className="text-[#2F4858]" />,
+      icon: <HeartHandshake className="text-[#2F4858]" />,
+      value: "5000",
+      label: "Peace activists",
+      type: "peaceActivists",
+    },
+    {
+      icon: <HandHeart className="text-[#2F4858]" />,
       value: "100",
-      label: "Political Parties",
-      type: "committedPoliticalParties",
+      label: "Donors",
+      type: "donors",
     },
   ];
 
@@ -78,59 +80,15 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-10">
-          {/* <div className="bg-[#E9EDC980] border border-[#86AC9D] py-4 px-6 rounded-[30px] w-[250px] h-fit"> */}
-          <div className="w-fit">
-            <div className="rounded-full">
-              {stats.find((stat) => stat.type === "peaceActivists")?.icon}
-            </div>
-            <div className="flex items-center justify-between mb-1 gap-2">
-              <span className="text-3xl font-bold text-[#2F4858]">
-                {formattedCount[0]}
-              </span>
-            </div>
-            <p className="text-sm font-medium text-[#2F4858]">
-              {stats.find((stat) => stat.type === "peaceActivists")?.label}
-            </p>
-          </div>
-
-          {/* Tarjeta de 20 programas */}
-
-          {/* <div className="bg-[#E9EDC980] border border-[#86AC9D] py-4 px-6 rounded-[30px] w-[250px] h-fit"> */}
-          <div className="w-fit">
-            <div className="rounded-full">
-              {stats.find((stat) => stat.type === "pledgesMade")?.icon}
-            </div>
-            <div className="flex items-center justify-between mb-1 gap-2">
-              <span className="text-3xl font-bold text-[#2F4858]">
-                {formattedCount[1]}
-              </span>
-            </div>
-            <p className="text-sm font-medium text-[#2F4858]">
-              {stats.find((stat) => stat.type === "pledgesMade")?.label}
-            </p>
-          </div>
-
-          {/* <div className="bg-[#E9EDC980] border border-[#86AC9D] py-4 px-6 rounded-[30px] w-[250px] h-fit"> */}
-          <div className="w-fit">
-            <div className="rounded-full">
-              {
-                stats.find((stat) => stat.type === "committedPoliticalParties")
-                  ?.icon
-              }
-            </div>
-            <div className="flex items-center justify-start mb-1">
-              <span className="text-3xl font-bold text-[#2F4858]">
-                {formattedCount[2]}
-              </span>
-            </div>
-            <p className="text-sm font-medium text-[#2F4858]">
-              {
-                stats.find((stat) => stat.type === "committedPoliticalParties")
-                  ?.label
-              }
-            </p>
-          </div>
+        <div className="grid grid-cols-3 max-w-xl">
+          {stats.map((stat, index) => (
+            <StatCard
+              key={stat.type}
+              icon={stat.icon}
+              count={formattedCount[index]}
+              label={stat.label}
+            />
+          ))}
         </div>
       </div>
 

@@ -10,6 +10,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { useState } from "react";
 import PledgesProgressBar from "@/components/ui/pledges-progress-bar";
 import { Campaign, MediaItem } from "@/lib/types";
+import { InteractionProvider } from "@/components/pledge/shared/interaction-context";
 
 interface MainContentSectionProps {
   campaign: Campaign;
@@ -62,13 +63,24 @@ function ContentTabs({
   sidebarWidth,
   campaignSlug,
 }: ContentTabsProps) {
+  const [activeSolutionId, setActiveSolutionId] = useState("solution-1");
+
+  const handleSolutionChange = (solutionId: string) => {
+    setActiveSolutionId(solutionId);
+  };
+
   return (
-    <div className="flex flex-row gap-8 h-[calc(100vh+20rem)]">
-      <div className="flex flex-col h-full" style={{ width: mainContentWidth }}>
-        <TabsSection campaignSlug={campaignSlug} />
+    <div className="flex flex-row gap-8" data-tab-value="comments">
+      <div className="flex flex-col" style={{ width: mainContentWidth }}>
+        <TabsSection
+          campaignSlug={campaignSlug}
+          onSolutionChange={handleSolutionChange}
+        />
       </div>
-      <div className="flex flex-col h-full" style={{ width: sidebarWidth }}>
-        <SidebarSection />
+      <div className="flex flex-col" style={{ width: sidebarWidth }}>
+        <div className="sticky top-20">
+          <SidebarSection solutionId={activeSolutionId} />
+        </div>
       </div>
     </div>
   );
@@ -95,11 +107,13 @@ export function CampaignDetailContent({ campaign }: ProductDetailContentProps) {
 
           <div className="flex flex-col gap-8">
             <MainContentSection campaign={campaign} />
-            <ContentTabs
-              mainContentWidth="70%"
-              sidebarWidth="30%"
-              campaignSlug={campaign.slug}
-            />
+            <InteractionProvider>
+              <ContentTabs
+                mainContentWidth="70%"
+                sidebarWidth="30%"
+                campaignSlug={campaign.slug}
+              />
+            </InteractionProvider>
           </div>
         </div>
       </div>

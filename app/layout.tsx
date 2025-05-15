@@ -1,10 +1,8 @@
 import type React from "react";
 import "./globals.css";
-import { Inter, Afacad, Quicksand, Montserrat } from "next/font/google";
-// import { ThemeProvider } from "@/components/theme-provider";
+import { Montserrat } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import SiteHeader from "@/components/layout/site-header";
-import SiteFooter from "@/components/layout/site-footer";
+import { LayoutWrapper } from "@/components/layout/layout-wrapper";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -28,9 +26,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <SiteHeader />
-          {children}
-          <SiteFooter />
+          <LayoutWrapper>{children}</LayoutWrapper>
         </ThemeProvider>
       </body>
     </html>

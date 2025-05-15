@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 
 export const tabs = [
   { id: "solution-proposals", label: "Solution proposals" },
-  // { id: "decision-makers", label: "Support decision makers" },
   { id: "conference", label: "Upcoming conference" },
 ];
 

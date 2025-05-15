@@ -1,26 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import Image from "next/image";
-import {
-  Mail,
-  Users,
-  Megaphone,
-  Award,
-  Clock,
-  Handshake,
-  Globe,
-  CheckCircle,
-  ArrowRight,
-} from "lucide-react";
 import HeroVolunteerBanner from "@/components/volunteer/hero-volunteer-banner";
-import WaysToVolunteer from "@/components/volunteer/ways-to-volunteer";
-import VolunteerImpactMetrics from "@/components/volunteer/volunteer-impact-metrics";
 import HighProfileOutreach from "@/components/volunteer/high-profile-outreach";
-import SpreadWordSection from "@/components/volunteer/spread-word-section";
-import PartnerWithUs from "@/components/volunteer/partner-with-us";
-import VolunteerCtaBanner from "@/components/volunteer/volunteer-cta-banner";
 import JoinOurTeamForm from "@/components/volunteer/join-our-team-form";
+import SpreadWordSection from "@/components/volunteer/spread-word-section";
+import VolunteerCtaBanner from "@/components/volunteer/volunteer-cta-banner";
+import VolunteerImpactMetrics from "@/components/volunteer/volunteer-impact-metrics";
+import WaysToVolunteer from "@/components/volunteer/ways-to-volunteer";
+import { Handshake, Megaphone, Users } from "lucide-react";
 
 export default function VolunteerPage() {
   const volunteerWays = [
@@ -69,7 +54,7 @@ export default function VolunteerPage() {
       <VolunteerImpactMetrics impactMetrics={impactMetrics} />
       <HighProfileOutreach />
       <SpreadWordSection />
-      <PartnerWithUs />
+      {/* <PartnerWithUs /> */}
       <VolunteerCtaBanner />
       <JoinOurTeamForm />
     </main>
