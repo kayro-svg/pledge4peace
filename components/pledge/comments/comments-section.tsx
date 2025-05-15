@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import CommentItem from "./comment-item";
 import CommentForm from "./comment-form";
 import { useInteractions } from "../shared/interaction-context";
+import Image from "next/image";
 
 interface Comment {
   id: string;
@@ -114,24 +115,28 @@ export default function CommentsSection({ solutionId }: CommentsSectionProps) {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h3 className="text-lg font-semibold">Comments</h3>
-        <span className="text-sm text-gray-500">{commentCount} comments</span>
-      </div>
-
       {solutionId && (
-        <CommentForm
-          solutionId={solutionId}
-          onSubmit={handleCommentSubmit}
-          userAvatar={currentUser.avatar}
-          userName={currentUser.name}
-        />
+        <>
+          <div className="flex justify-between items-center">
+            <h3 className="text-lg font-semibold">Comments</h3>
+            <span className="text-sm text-gray-500">
+              {commentCount} comments
+            </span>
+          </div>
+
+          <CommentForm
+            solutionId={solutionId}
+            onSubmit={handleCommentSubmit}
+            userAvatar={currentUser.avatar}
+            userName={currentUser.name}
+          />
+        </>
       )}
 
       <div className="space-y-1 mt-4">
         {loading ? (
           <p className="text-center text-gray-500 py-4">Loading comments...</p>
-        ) : comments.length > 0 ? (
+        ) : comments.length > 0 && solutionId ? (
           comments.map((comment) => (
             <CommentItem
               key={comment.id}
@@ -142,9 +147,21 @@ export default function CommentsSection({ solutionId }: CommentsSectionProps) {
             />
           ))
         ) : (
-          <p className="text-center text-gray-500 py-4">
-            No comments yet. Be the first to comment!
-          </p>
+          <div className="flex flex-col items-center justify-center">
+            <div className="w-full h-full flex justify-center items-center">
+              <Image
+                src="/comments_section.svg"
+                alt="No comments"
+                width={250}
+                height={250}
+              />
+            </div>
+            {solutionId && (
+              <p className="text-center text-gray-500 py-4">
+                No comments yet. Be the first to comment!
+              </p>
+            )}
+          </div>
         )}
       </div>
     </div>

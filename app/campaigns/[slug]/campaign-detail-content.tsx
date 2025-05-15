@@ -63,7 +63,7 @@ function ContentTabs({
   sidebarWidth,
   campaignSlug,
 }: ContentTabsProps) {
-  const [activeSolutionId, setActiveSolutionId] = useState("solution-1");
+  const [activeSolutionId, setActiveSolutionId] = useState("");
 
   const handleSolutionChange = (solutionId: string) => {
     setActiveSolutionId(solutionId);

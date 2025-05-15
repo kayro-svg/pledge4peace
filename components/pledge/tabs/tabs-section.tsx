@@ -15,7 +15,7 @@ export default function TabsSection({
   onSolutionChange,
 }: TabsSectionProps) {
   const [activeTab, setActiveTab] = useState("solution-proposals");
-  const [activeSolutionId, setActiveSolutionId] = useState("solution-1");
+  const [activeSolutionId, setActiveSolutionId] = useState("");
 
   // When active solution changes, notify parent component
   useEffect(() => {
