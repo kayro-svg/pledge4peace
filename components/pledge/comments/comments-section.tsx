@@ -119,8 +119,12 @@ export default function CommentsSection({ solutionId }: CommentsSectionProps) {
         <>
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-semibold">Comments</h3>
-            <span className="text-sm text-gray-500">
+            {/* TODO: Add comment count when we have the API */}
+            {/* <span className="text-sm text-gray-500">
               {commentCount} comments
+            </span> */}
+            <span className="text-sm text-gray-500">
+              {comments.length} comments
             </span>
           </div>
 
