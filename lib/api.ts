@@ -76,6 +76,7 @@ const MOCK_DATA = {
   campaigns: {
     all: [
       {
+        id: "1",
         slug: "strengthen-democracy-in-pakistan",
         image: "/placeholder.svg?height=400&width=600",
         title: "Strengthen Democracy In Pakistan",
@@ -288,6 +289,7 @@ const MOCK_DATA = {
         ],
       },
       {
+        id: "2",
         slug: "create-permanent-peace-strengthen-democracies-in-israel-and-palestine",
         image: "/placeholder.svg?height=400&width=600",
         title:

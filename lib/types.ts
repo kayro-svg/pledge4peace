@@ -84,6 +84,7 @@ export type AboutPage = MainAboutPage | TeamAboutPage | AboutPageBase;
 
 // Campaign/Pledge types
 export interface Campaign {
+  id: string;
   slug: string;
   image: string;
   title: string;

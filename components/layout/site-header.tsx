@@ -52,22 +52,25 @@ export default function SiteHeader() {
         >
           Contact
         </Link>
-        <Link
+        {/* TODO: Add blog page when the information is available */}
+        {/* <Link
           href="/blog"
           className="text-lg font-medium text-[#2F4858] hover:text-[#698D8B] transition-colors active:text-brand-500"
         >
           Blog
-        </Link>
+        </Link> */}
       </nav>
       <div className="flex items-center space-x-4">
-        <Link
+        {/* TODO: Add donate page when the information is available */}
+        {/* <Link
           href="/donate"
           className="tracking-wider inline-flex items-center w-fit justify-center rounded-full border border-[#548281] px-5 py-2 text-sm font-bold text-white bg-[#548281] hover:text-white shadow hover:bg-[#2f4858] transition-colors duration-300 ease-in-out focus:outline-none"
         >
           DONATE
-        </Link>
+        </Link> */}
         <Link
-          href="/login"
+          // href="/login"
+          href="/dashboard"
           className="tracking-wider inline-flex items-center w-fit justify-center rounded-full border border-[#548281] px-5 py-2 text-sm font-bold text-[#548281] hover:text-white shadow hover:bg-[#2f4858] transition-colors duration-300 ease-in-out focus:outline-none"
         >
           LOGIN

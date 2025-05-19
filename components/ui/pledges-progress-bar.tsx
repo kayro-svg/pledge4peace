@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 type PledgesProgressBarProps = {
   currentValue: number;
   goalValue: number;
+  variant?: "default" | "medium" | "small";
 };
 
 export default function PledgesProgressBar({
   currentValue,
   goalValue,
+  variant = "default",
 }: PledgesProgressBarProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -50,16 +52,28 @@ export default function PledgesProgressBar({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex justify-between text-sm mb-2">
-        <span>Raised</span>
-        <span>Goal</span>
+        <span className={`${variant === "medium" ? "text-xs" : "text-sm"}`}>
+          Raised
+        </span>
+        <span className={`${variant === "medium" ? "text-xs" : "text-sm"}`}>
+          Goal
+        </span>
       </div>
       <Progress
         value={progressPercentage}
         className="h-2 mb-2 bg-[#d2daba80]"
       />
-      <div className="flex justify-between text-sm">
-        <span>+{count.toLocaleString()} Peace Pledges</span>
-        <span>+{goalValue.toLocaleString()} Peace Pledges</span>
+      <div
+        className={`flex justify-between text-sm ${
+          variant === "medium" ? "text-sm" : "text-base"
+        }`}
+      >
+        <span className={`${variant === "medium" ? "text-xs" : "text-sm"}`}>
+          +{count.toLocaleString()} Peace Pledges
+        </span>
+        <span className={`${variant === "medium" ? "text-xs" : "text-sm"}`}>
+          +{goalValue.toLocaleString()} Peace Pledges
+        </span>
       </div>
     </div>
   );

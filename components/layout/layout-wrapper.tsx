@@ -7,7 +7,15 @@ import SiteFooter from "@/components/layout/site-footer";
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const noHeaderFooterRoutes = ["/login", "/signup", "/reset-password"];
+  const noHeaderFooterRoutes = [
+    "/login",
+    "/signup",
+    "/reset-password",
+    "/dashboard",
+    "/dashboard/pledges",
+    "/dashboard/votes",
+    "/dashboard/profile",
+  ];
   const showHeaderFooter = !noHeaderFooterRoutes.includes(pathname);
 
   return (

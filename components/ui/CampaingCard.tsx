@@ -14,6 +14,10 @@ interface CampaignCardProps {
   link: string;
   imageWidth?: number;
   imageHeight?: number;
+  campaignType?: "recent" | "your-activity" | "all-campaigns";
+  goalValue?: number;
+  currentValue?: number;
+  variant?: "default" | "small" | "medium";
 }
 
 export default function CampaignCard({
@@ -23,10 +27,12 @@ export default function CampaignCard({
   link,
   imageWidth = 16,
   imageHeight = 9,
+  campaignType = "all-campaigns",
+  goalValue = 10000,
+  currentValue = 8000,
+  variant = "default",
 }: CampaignCardProps) {
   const router = useRouter();
-  const currentValue = 8000; // Current/final value of the progress bar
-  const goalValue = 10000; // Max goal for progress calculation
   const [isHovered, setIsHovered] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
@@ -65,7 +71,7 @@ export default function CampaignCard({
 
   return (
     <div
-      className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+      className={`bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -80,17 +86,33 @@ export default function CampaignCard({
       </div>
       <div className="flex flex-col gap-6 p-6">
         <div className="flex-grow">
-          <h3 className="text-[#252a34] text-2xl font-semibold mb-2">
+          <h3
+            className={`text-[#252a34] text-2xl font-semibold mb-2 ${
+              variant === "medium" ? "text-xl" : "text-2xl"
+            }`}
+          >
             {title}
           </h3>
-          <p className="text-[#555555] text-base line-clamp-3">{description}</p>
+          <p
+            className={`text-[#555555] text-base line-clamp-3 ${
+              variant === "medium" ? "text-sm" : "text-base"
+            }`}
+          >
+            {description}
+          </p>
         </div>
-        <PledgesProgressBar currentValue={8000} goalValue={10000} />
+        <PledgesProgressBar
+          currentValue={currentValue}
+          goalValue={goalValue}
+          variant={variant}
+        />
         <button
-          className="bg-[#2f4858] text-white py-2 px-6 mt-4 rounded-full font-medium hover:bg-opacity-90 transition-colors w-fit"
+          className={`bg-[#2f4858] text-white py-2 px-6 mt-4 rounded-full font-medium hover:bg-opacity-90 transition-colors w-fit ${
+            variant === "medium" ? "text-xs" : "text-sm"
+          }`}
           onClick={() => router.push(link)}
         >
-          Pledge Now
+          {campaignType === "your-activity" ? "View Campaign" : "Pledge Now"}
         </button>
       </div>
     </div>
